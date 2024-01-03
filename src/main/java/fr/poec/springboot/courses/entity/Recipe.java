@@ -1,4 +1,4 @@
-package fr.poec.springboot.entity;
+package fr.poec.springboot.courses.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
-package fr.poec.springboot.api;
+package fr.poec.springboot.courses.api;
 
-import fr.poec.springboot.entity.Recipe;
-import fr.poec.springboot.repository.RecipeRepository;
+import fr.poec.springboot.courses.entity.Recipe;
+import fr.poec.springboot.courses.repository.RecipeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

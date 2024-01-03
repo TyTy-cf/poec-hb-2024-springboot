@@ -1,7 +1,7 @@
-package fr.poec.springboot.api;
+package fr.poec.springboot.courses.api;
 
-import fr.poec.springboot.entity.Ingredient;
-import fr.poec.springboot.repository.IngredientRepository;
+import fr.poec.springboot.courses.entity.Ingredient;
+import fr.poec.springboot.courses.repository.IngredientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
