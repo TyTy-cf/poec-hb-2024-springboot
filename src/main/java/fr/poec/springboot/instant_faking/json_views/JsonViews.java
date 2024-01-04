@@ -5,4 +5,6 @@ public class JsonViews {
     public interface PublisherListView {}
     public interface PublisherShowView {}
 
+    public interface GameListView {}
+
 }

@@ -23,20 +23,32 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView({
+        JsonViews.PublisherShowView.class,
+        JsonViews.GameListView.class
+    })
     private String name;
 
     private String description;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView({
+        JsonViews.PublisherShowView.class,
+        JsonViews.GameListView.class
+    })
     private int price;
 
     private Date publishedAt;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView({
+        JsonViews.PublisherShowView.class,
+        JsonViews.GameListView.class
+    })
     private String thumbnailCover;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView({
+        JsonViews.PublisherShowView.class,
+        JsonViews.GameListView.class
+    })
     private String slug;
 
     @ManyToOne
