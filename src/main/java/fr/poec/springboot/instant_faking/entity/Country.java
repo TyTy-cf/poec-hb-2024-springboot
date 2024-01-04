@@ -1,5 +1,7 @@
 package fr.poec.springboot.instant_faking.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,12 +21,14 @@ public class Country {
 
     private String code;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String name;
 
     private String nationality;
 
     private String slug;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String urlFlag;
 
 }

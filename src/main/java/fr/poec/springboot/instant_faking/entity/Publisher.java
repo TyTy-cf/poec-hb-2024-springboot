@@ -1,5 +1,7 @@
 package fr.poec.springboot.instant_faking.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,20 +21,27 @@ public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(JsonViews.PublisherShowView.class)
     private Long id;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private Date createdAt;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String name;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String slug;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String website;
 
     @ManyToOne
+    @JsonView(JsonViews.PublisherShowView.class)
     private Country country;
 
     @OneToMany(mappedBy = "publisher")
+    @JsonView(JsonViews.PublisherShowView.class)
     private List<Game> games = new ArrayList<>();
 
 }

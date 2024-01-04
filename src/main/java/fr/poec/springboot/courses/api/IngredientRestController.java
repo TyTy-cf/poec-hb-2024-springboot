@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/cooking/ingredient")
+@RequestMapping("/api-v2/ingredient")
 public class IngredientRestController {
 
     private IngredientRepository ingredientRepository;

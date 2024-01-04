@@ -1,5 +1,7 @@
 package fr.poec.springboot.instant_faking.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,16 +23,20 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String name;
 
     private String description;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private int price;
 
     private Date publishedAt;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String thumbnailCover;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String slug;
 
     @ManyToOne
