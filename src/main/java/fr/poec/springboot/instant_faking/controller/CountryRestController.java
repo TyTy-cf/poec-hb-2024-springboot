@@ -24,9 +24,9 @@ public class CountryRestController {
         return countryService.findAll();
     }
 
-    @GetMapping(path = "/{id}")
-    public Optional<Country> show(@PathVariable Long id) {
-        return countryService.findById(id);
+    @GetMapping(path = "/{field}")
+    public Optional<Country> show(@PathVariable String field) {
+        return countryService.findByField(field);
     }
 
 }
