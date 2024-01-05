@@ -36,13 +36,11 @@ public class User {
     @JsonView(JsonViews.UserListView.class)
     private String nickname;
 
-    @JsonView(JsonViews.UserShowView.class)
     private String password;
 
     @JsonView(JsonViews.UserMinimalView.class)
     private String profileImage;
 
-    @JsonView(JsonViews.UserShowView.class)
     private String roles;
 
     @JsonView(JsonViews.UserShowView.class)
@@ -68,5 +66,15 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonView(JsonViews.UserShowView.class)
     private List<Review> reviews = new ArrayList<>();
+
+    @JsonView(JsonViews.UserShowView.class)
+    public int getNbGames() {
+        return this.userOwnGames.size();
+    }
+
+    @JsonView(JsonViews.UserShowView.class)
+    public boolean isAdmin() {
+        return roles.contains("[\"ROLE_ADMIN\"]");
+    }
 
 }
