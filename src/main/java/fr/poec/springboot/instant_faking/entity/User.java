@@ -25,11 +25,13 @@ public class User {
 
     private Date createdAt;
 
+    @JsonView(JsonViews.UserListView.class)
     private String email;
 
     @JsonView(JsonViews.UserMinimalView.class)
     private String name;
 
+    @JsonView(JsonViews.UserListView.class)
     private String nickname;
 
     private String password;
@@ -45,6 +47,7 @@ public class User {
     private List<UserOwnGame> userOwnGames = new ArrayList<>();
 
     @ManyToOne
+    @JsonView(JsonViews.UserListView.class)
     private Country country;
 
     @ManyToMany
