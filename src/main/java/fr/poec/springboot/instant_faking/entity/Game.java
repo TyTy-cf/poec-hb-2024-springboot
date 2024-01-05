@@ -42,6 +42,9 @@ public class Game {
     @ManyToOne
     private Publisher publisher;
 
+    @OneToMany(mappedBy = "game")
+    private List<Review> reviews = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(
         name = "game_platform",

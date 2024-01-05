@@ -1,5 +1,7 @@
 package fr.poec.springboot.instant_faking.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,12 +27,14 @@ public class User {
 
     private String email;
 
+    @JsonView(JsonViews.UserMinimalView.class)
     private String name;
 
     private String nickname;
 
     private String password;
 
+    @JsonView(JsonViews.UserMinimalView.class)
     private String profileImage;
 
     private String roles;
