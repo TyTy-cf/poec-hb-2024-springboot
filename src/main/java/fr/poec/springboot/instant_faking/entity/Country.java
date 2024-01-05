@@ -26,6 +26,7 @@ public class Country {
 
     private String nationality;
 
+    @JsonView(JsonViews.PublisherShowView.class)
     private String slug;
 
     @JsonView(JsonViews.PublisherShowView.class)

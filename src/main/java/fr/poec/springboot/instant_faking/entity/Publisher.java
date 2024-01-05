@@ -1,7 +1,5 @@
 package fr.poec.springboot.instant_faking.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import jakarta.persistence.*;

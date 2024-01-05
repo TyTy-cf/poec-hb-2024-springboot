@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class CountryService {
+public class CountryService implements DAOServiceInterface<Country> {
 
     private CountryRepository countryRepository;
 
