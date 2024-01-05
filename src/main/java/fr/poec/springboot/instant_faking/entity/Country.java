@@ -21,15 +21,15 @@ public class Country {
 
     private String code;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.CountryDetailView.class)
     private String name;
 
     private String nationality;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.CountryDetailView.class)
     private String slug;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.CountryDetailView.class)
     private String urlFlag;
 
 }
