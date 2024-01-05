@@ -21,8 +21,10 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(JsonViews.UserShowView.class)
     private Long id;
 
+    @JsonView(JsonViews.UserShowView.class)
     private Date createdAt;
 
     @JsonView(JsonViews.UserListView.class)
@@ -34,16 +36,20 @@ public class User {
     @JsonView(JsonViews.UserListView.class)
     private String nickname;
 
+    @JsonView(JsonViews.UserShowView.class)
     private String password;
 
     @JsonView(JsonViews.UserMinimalView.class)
     private String profileImage;
 
+    @JsonView(JsonViews.UserShowView.class)
     private String roles;
 
+    @JsonView(JsonViews.UserShowView.class)
     private double wallet;
 
     @OneToMany(mappedBy = "user")
+    @JsonView(JsonViews.UserShowView.class)
     private List<UserOwnGame> userOwnGames = new ArrayList<>();
 
     @ManyToOne
@@ -51,14 +57,16 @@ public class User {
     private Country country;
 
     @ManyToMany
-    @JoinTable(
-        name = "user_wish_list",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "game_id")
+    @JoinTable( // Permet de modifier la table relationnelle qui sera créée
+        name = "user_wish_list", // nom de la table
+        joinColumns = @JoinColumn(name = "user_id"), // renomme la colonne de l'objet courant dans la table relationnelle
+        inverseJoinColumns = @JoinColumn(name = "game_id") // renomme la colonne de l'objet en relation dans la table relationnelle
     )
+    @JsonView(JsonViews.UserShowView.class)
     private List<Game> wantedGames = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
+    @JsonView(JsonViews.UserShowView.class)
     private List<Review> reviews = new ArrayList<>();
 
 }

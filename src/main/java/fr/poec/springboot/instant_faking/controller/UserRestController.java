@@ -6,10 +6,12 @@ import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import fr.poec.springboot.instant_faking.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -22,6 +24,12 @@ public class UserRestController {
     @JsonView(JsonViews.UserListView.class)
     List<User> list() {
         return userService.findAll();
+    }
+
+    @GetMapping(path = "/{id}")
+    @JsonView(JsonViews.UserShowView.class)
+    Optional<User> show(@PathVariable Long id) {
+        return userService.findById(id);
     }
 
 }

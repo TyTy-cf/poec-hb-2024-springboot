@@ -19,33 +19,33 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.ReviewShowView.class)
     private Long id;
 
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.ReviewShowView.class)
     private String content;
 
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.ReviewShowView.class)
     private Date createdAt;
 
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.ReviewShowView.class)
     private int downVote;
 
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.ReviewShowView.class)
     private int upVote;
 
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.ReviewShowView.class)
     private double rating;
 
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.ReviewShowView.class)
     private String title;
 
     @ManyToOne
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.GameShowView.class)
     private User user;
 
     @ManyToOne
-    @JsonView(JsonViews.ReviewListView.class)
+    @JsonView(JsonViews.UserShowView.class)
     private Game game;
 
 }
