@@ -21,28 +21,33 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(JsonViews.GameShowView.class)
     private Long id;
 
-    @JsonView(JsonViews.GameListView.class)
+    @JsonView(JsonViews.GameMinimalView.class)
     private String name;
 
+    @JsonView(JsonViews.GameShowView.class)
     private String description;
 
-    @JsonView(JsonViews.GameListView.class)
+    @JsonView(JsonViews.GameMinimalView.class)
     private int price;
 
+    @JsonView(JsonViews.GameShowView.class)
     private Date publishedAt;
 
-    @JsonView(JsonViews.GameListView.class)
+    @JsonView(JsonViews.GameMinimalView.class)
     private String thumbnailCover;
 
-    @JsonView(JsonViews.GameListView.class)
+    @JsonView(JsonViews.GameMinimalView.class)
     private String slug;
 
     @ManyToOne
-    private Publisher publisher;
+    @JsonView(JsonViews.GameShowView.class)
+    private Publisher publisher; // BDD => publisher_id
 
     @OneToMany(mappedBy = "game")
+    @JsonView(JsonViews.GameShowView.class)
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToMany
@@ -51,6 +56,7 @@ public class Game {
         joinColumns = @JoinColumn(name = "game_id"), // Nom de la colonne de la table courante
         inverseJoinColumns = @JoinColumn(name = "platform_id") // Nom de la colonne de l'entité en relation
     )
+    @JsonView(JsonViews.GameShowView.class)
     private List<Platform> platforms = new ArrayList<>();
 
     @ManyToMany
@@ -59,6 +65,7 @@ public class Game {
         joinColumns = @JoinColumn(name = "game_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+    @JsonView(JsonViews.GameShowView.class)
     private List<Category> categories = new ArrayList<>();
 
     @ManyToMany
@@ -67,6 +74,7 @@ public class Game {
         joinColumns = @JoinColumn(name = "game_id"),
         inverseJoinColumns = @JoinColumn(name = "country_id")
     )
+    @JsonView(JsonViews.GameShowView.class)
     private List<Country> countries = new ArrayList<>();
 
 }

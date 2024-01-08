@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,4 +18,11 @@ public class GameService {
         return gameRepository.findAll();
     }
 
+    public Optional<Game> findBySlug(String slug) {
+        return gameRepository.findBySlug(slug);
+    }
+
+    public List<Game> findByCategory(String slug) {
+        return gameRepository.findAllByCategoriesSlugOrderByPublishedAtDesc(slug);
+    }
 }

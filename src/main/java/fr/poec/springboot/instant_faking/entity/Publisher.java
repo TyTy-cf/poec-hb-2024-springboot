@@ -21,10 +21,10 @@ public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.PublisherAllShowView.class)
     private Long id;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.PublisherAllShowView.class)
     private Date createdAt;
 
     @JsonView(JsonViews.PublisherShowView.class)
@@ -33,15 +33,15 @@ public class Publisher {
     @JsonView(JsonViews.PublisherShowView.class)
     private String slug;
 
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.PublisherAllShowView.class)
     private String website;
 
     @ManyToOne
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.PublisherAllShowView.class)
     private Country country;
 
     @OneToMany(mappedBy = "publisher")
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.PublisherAllShowView.class)
     private List<Game> games = new ArrayList<>();
 
 }

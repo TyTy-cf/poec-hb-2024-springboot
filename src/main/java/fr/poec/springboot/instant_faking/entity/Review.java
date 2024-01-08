@@ -41,11 +41,11 @@ public class Review {
     private String title;
 
     @ManyToOne
-    @JsonView(JsonViews.GameShowView.class)
+    @JsonView(JsonViews.UserListView.class)
     private User user;
 
     @ManyToOne
-    @JsonView(JsonViews.UserShowView.class)
+    @JsonView(JsonViews.GameListView.class)
     private Game game;
 
 }

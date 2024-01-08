@@ -1,5 +1,7 @@
 package fr.poec.springboot.instant_faking.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,10 +17,13 @@ public class Platform {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(JsonViews.GamePlatformView.class)
     private Long id;
 
-    private String platform;
+    @JsonView(JsonViews.GamePlatformMinimalView.class)
+    private String name;
 
+    @JsonView(JsonViews.GamePlatformMinimalView.class)
     private String slug;
 
 }

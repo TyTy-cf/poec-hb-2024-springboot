@@ -2,22 +2,56 @@ package fr.poec.springboot.instant_faking.json_views;
 
 public class JsonViews {
 
-    public interface GameListView {}
+    public interface GameListView extends
+            GameMinimalView {}
 
-    public interface GameShowView extends GameListView { }
+    public interface GameMinimalView {}
+
+    public interface GameShowView extends
+            GameMinimalView,
+            PublisherShowView,
+            ReviewShowView,
+            UserListView,
+            GamePlatformMinimalView,
+            CategoryMinimalView,
+            CountryDetailView { }
+
+    public interface GamePlatformView extends
+            GamePlatformMinimalView {}
+
+    public interface GamePlatformMinimalView {}
+
+    public interface CategoryView extends
+            CategoryMinimalView {}
+
+    public interface CategoryMinimalView {}
 
     public interface CountryDetailView {}
 
-    public interface PublisherShowView extends GameListView, CountryDetailView {}
+    public interface PublisherAllShowView extends
+            PublisherShowView,
+            GameListView {}
 
-    public interface UserShowView extends GameListView, UserListView, ReviewShowView {}
+    public interface PublisherShowView extends
+            CountryDetailView {}
+
+    public interface UserShowView extends
+            GameListView,
+            UserMinimalView,
+            CountryDetailView,
+            ReviewShowView {}
 
     public interface UserMinimalView {}
 
-    public interface UserListView extends UserMinimalView, CountryDetailView {}
+    public interface UserListView extends
+            UserMinimalView,
+            CountryDetailView {}
 
     public interface ReviewShowView {}
 
-    public interface ReviewListView extends GameListView, UserMinimalView, ReviewShowView, GameShowView, UserListView {}
+    public interface ReviewListView extends
+            GameListView,
+            ReviewShowView,
+            UserListView {}
 
 }

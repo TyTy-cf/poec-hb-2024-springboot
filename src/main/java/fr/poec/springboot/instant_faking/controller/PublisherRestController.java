@@ -25,7 +25,7 @@ public class PublisherRestController {
     }
 
     @GetMapping(path = "/{id}")
-    @JsonView(JsonViews.PublisherShowView.class)
+    @JsonView(JsonViews.PublisherAllShowView.class)
     public Publisher show(@PathVariable Long id) {
         Optional<Publisher> publisherOptional = publisherService.show(id);
         if (publisherOptional.isPresent()) {

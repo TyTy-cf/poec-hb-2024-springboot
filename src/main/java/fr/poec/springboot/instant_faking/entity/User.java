@@ -67,7 +67,7 @@ public class User {
     @JsonView(JsonViews.UserShowView.class)
     private List<Review> reviews = new ArrayList<>();
 
-    @JsonView(JsonViews.UserShowView.class)
+    @JsonView(JsonViews.UserListView.class)
     public int getNbGames() {
         return this.userOwnGames.size();
     }
