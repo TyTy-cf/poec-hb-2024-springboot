@@ -1,8 +1,12 @@
 package fr.poec.springboot.instant_faking.service;
 
 import fr.poec.springboot.instant_faking.DTO.PublisherDTO;
+import fr.poec.springboot.instant_faking.entity.Country;
 import fr.poec.springboot.instant_faking.entity.Publisher;
+import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.PublisherRepository;
+import fr.poec.springboot.instant_faking.utils.Dump;
+import fr.poec.springboot.instant_faking.utils.Slugger;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,23 +20,34 @@ public class PublisherService {
 
     private PublisherRepository publisherRepository;
 
-    public List<PublisherDTO> findAll() {
-        List<PublisherDTO> dtoList = new ArrayList<>();
-        publisherRepository.findAll().forEach(p -> {
-            dtoList.add(getDTOFromObjet(p));
-        });
-        return dtoList;
+    private CountryService countryService;
+
+    private Slugger slugger;
+
+    public List<Publisher> findAll() {
+        return publisherRepository.findAll();
     }
 
-    private PublisherDTO getDTOFromObjet(Publisher o) {
-        return new PublisherDTO(
-            o.getName(),
-            o.getWebsite(),
-            o.getSlug()
-        );
+    public Publisher show(Long id) {
+        Optional<Publisher> publisherOptional = publisherRepository.findById(id);
+        if (publisherOptional.isPresent()) {
+            return publisherOptional.get();
+        }
+        throw new NotFoundInstantFakingException("Publisher", "id", id);
     }
 
-    public Optional<Publisher> show(Long id) {
-        return publisherRepository.findById(id);
+    public Publisher persist(PublisherDTO publisherDTO, Long id) {
+        Publisher p = new Publisher();
+        p.setId(id);
+        p.setName(publisherDTO.getName());
+        p.setCreatedAt(publisherDTO.getCreatedAt());
+        p.setWebsite(publisherDTO.getWebsite());
+        p.setSlug(slugger.slugify(publisherDTO.getName()));
+
+        Optional<Country> countryOptional = countryService.findByField(publisherDTO.getCountryId().toString());
+        countryOptional.ifPresent(p::setCountry);
+
+        // Si id = null, le save fera un insert, sinon un update
+        return publisherRepository.saveAndFlush(p);
     }
 }
