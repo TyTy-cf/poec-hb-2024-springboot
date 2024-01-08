@@ -3,9 +3,11 @@ package fr.poec.springboot.instant_faking.service;
 import fr.poec.springboot.instant_faking.DTO.UserDTO;
 import fr.poec.springboot.instant_faking.entity.User;
 import fr.poec.springboot.instant_faking.repository.UserRepository;
+import fr.poec.springboot.instant_faking.utils.Dump;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +27,11 @@ public class UserService implements DAOServiceInterface<User> {
     }
 
     public User create(UserDTO userDTO) {
-        return new User();
+        User user = new User();
+        user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+
+        return userRepository.saveAndFlush(user);
     }
 }

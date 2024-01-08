@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,16 +25,17 @@ public class User {
     @JsonView(JsonViews.UserShowView.class)
     private Long id;
 
+    @CreationTimestamp
     @JsonView(JsonViews.UserShowView.class)
     private Date createdAt;
 
-    @JsonView(JsonViews.UserListView.class)
+    @JsonView(JsonViews.UserShowView.class)
     private String email;
 
     @JsonView(JsonViews.UserMinimalView.class)
     private String name;
 
-    @JsonView(JsonViews.UserListView.class)
+    @JsonView(JsonViews.UserShowView.class)
     private String nickname;
 
     private String password;
@@ -41,17 +43,17 @@ public class User {
     @JsonView(JsonViews.UserMinimalView.class)
     private String profileImage;
 
-    private String roles;
+    private String roles = "[]";
 
     @JsonView(JsonViews.UserShowView.class)
-    private double wallet;
+    private double wallet = 0;
 
     @OneToMany(mappedBy = "user")
     @JsonView(JsonViews.UserShowView.class)
     private List<UserOwnGame> userOwnGames = new ArrayList<>();
 
     @ManyToOne
-    @JsonView(JsonViews.UserListView.class)
+    @JsonView(JsonViews.UserShowView.class)
     private Country country;
 
     @ManyToMany
