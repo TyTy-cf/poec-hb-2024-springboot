@@ -1,5 +1,6 @@
 package fr.poec.springboot.instant_faking.service;
 
+import fr.poec.springboot.instant_faking.DTO.UserDTO;
 import fr.poec.springboot.instant_faking.entity.User;
 import fr.poec.springboot.instant_faking.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -23,4 +24,7 @@ public class UserService implements DAOServiceInterface<User> {
         return userRepository.findById(id);
     }
 
+    public User create(UserDTO userDTO) {
+        return new User();
+    }
 }
