@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDTO {
+public class UserPostDTO {
 
     @Email(message = "Please, give a valid email")
     // On peut réécrire les valeurs des champs de l'annotation
