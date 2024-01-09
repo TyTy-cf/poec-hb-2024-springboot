@@ -1,16 +1,13 @@
 package fr.poec.springboot.instant_faking.service;
 
 import fr.poec.springboot.instant_faking.DTO.PublisherDTO;
-import fr.poec.springboot.instant_faking.entity.Country;
 import fr.poec.springboot.instant_faking.entity.Publisher;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.PublisherRepository;
-import fr.poec.springboot.instant_faking.utils.Dump;
 import fr.poec.springboot.instant_faking.utils.Slugger;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +34,12 @@ public class PublisherService {
     }
 
     public Publisher persist(PublisherDTO publisherDTO, Long id) {
+        if (id != null && publisherRepository.findById(id).isEmpty()) {
+            throw new NotFoundInstantFakingException(
+                    "Publisher", "id", id
+            );
+        }
+
         Publisher p = new Publisher();
         p.setId(id);
         p.setName(publisherDTO.getName());
