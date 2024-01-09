@@ -2,6 +2,7 @@ package fr.poec.springboot.instant_faking.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import fr.poec.springboot.instant_faking.DTO.UserPostDTO;
+import fr.poec.springboot.instant_faking.DTO.UserPutDTO;
 import fr.poec.springboot.instant_faking.entity.User;
 import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import fr.poec.springboot.instant_faking.service.UserService;
@@ -35,6 +36,12 @@ public class UserRestController {
     @JsonView(JsonViews.UserShowView.class)
     User create(@Valid @RequestBody UserPostDTO userDTO) {
         return userService.create(userDTO);
+    }
+
+    @PutMapping(path = "/{id}")
+    @JsonView(JsonViews.UserShowView.class)
+    User edit(@Valid @RequestBody UserPutDTO userDTO, @PathVariable Long id) {
+        return userService.edit(id, userDTO);
     }
 
 }

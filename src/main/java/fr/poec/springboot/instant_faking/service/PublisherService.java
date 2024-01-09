@@ -43,9 +43,7 @@ public class PublisherService {
         p.setCreatedAt(publisherDTO.getCreatedAt());
         p.setWebsite(publisherDTO.getWebsite());
         p.setSlug(slugger.slugify(publisherDTO.getName()));
-
-        Optional<Country> countryOptional = countryService.findByField(publisherDTO.getCountryId().toString());
-        countryOptional.ifPresent(p::setCountry);
+        p.setCountry(countryService.getCountryById(publisherDTO.getCountryId()));
 
         // Si id = null, le save fera un insert, sinon un update
         return publisherRepository.saveAndFlush(p);

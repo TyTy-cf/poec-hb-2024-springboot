@@ -1,6 +1,7 @@
 package fr.poec.springboot.instant_faking.service;
 
 import fr.poec.springboot.instant_faking.entity.Country;
+import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.CountryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,13 @@ public class CountryService implements DAOServiceInterface<Country> {
         } catch (NumberFormatException e) {
             return countryRepository.findBySlug(field);
         }
+    }
+
+    public Country getCountryById(Long id) {
+        Optional<Country> optionalCountry = findByField(id.toString());
+        if (optionalCountry.isEmpty()) { // on traite l'optional du Country
+            throw new NotFoundInstantFakingException("Country", "id", id);
+        }
+        return optionalCountry.get();
     }
 }

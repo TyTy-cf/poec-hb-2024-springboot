@@ -5,11 +5,11 @@ import lombok.Getter;
 @Getter
 public class NotFoundInstantFakingException extends RuntimeException {
 
-    private String type;
+    private final String type;
 
-    private String field;
+    private final String field;
 
-    private Object value;
+    private final Object value;
 
     public NotFoundInstantFakingException(String type, String field, Object value) {
         super("Entity not found");
