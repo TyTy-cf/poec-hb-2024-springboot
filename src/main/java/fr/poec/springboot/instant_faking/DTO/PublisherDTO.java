@@ -1,5 +1,6 @@
 package fr.poec.springboot.instant_faking.DTO;
 
+import fr.poec.springboot.instant_faking.validator.annotation.PastDate;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Setter
 public class PublisherDTO {
 
+    @PastDate
     @NotNull(message = "The date has to be a proper date")
     private Date createdAt;
 

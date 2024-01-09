@@ -10,7 +10,7 @@ public class PastDateValidator implements ConstraintValidator<PastDate, Date> {
 
     @Override
     public boolean isValid(Date date, ConstraintValidatorContext constraintValidatorContext) {
-        return false;
+        return date.before(new Date());
     }
 
 }
