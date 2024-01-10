@@ -1,6 +1,7 @@
 package fr.poec.springboot.instant_faking.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import fr.poec.springboot.instant_faking.entity.interfaces.SluggerInterface;
 import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Platform {
+public class Platform implements SluggerInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +27,8 @@ public class Platform {
     @JsonView(JsonViews.GamePlatformMinimalView.class)
     private String slug;
 
+    @Override
+    public String getField() {
+        return name;
+    }
 }

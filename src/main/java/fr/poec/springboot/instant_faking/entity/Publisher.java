@@ -1,6 +1,7 @@
 package fr.poec.springboot.instant_faking.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import fr.poec.springboot.instant_faking.entity.interfaces.SluggerInterface;
 import fr.poec.springboot.instant_faking.json_views.JsonViews;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Publisher {
+public class Publisher implements SluggerInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,4 +45,8 @@ public class Publisher {
     @JsonView(JsonViews.PublisherAllShowView.class)
     private List<Game> games = new ArrayList<>();
 
+    @Override
+    public String getField() {
+        return name;
+    }
 }
