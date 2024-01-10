@@ -1,6 +1,6 @@
 package fr.poec.springboot.instant_faking.validator.annotation;
 
-import fr.poec.springboot.instant_faking.validator.UniqueEmailValidator;
+import fr.poec.springboot.instant_faking.repository.EntityNameRepository;
 import fr.poec.springboot.instant_faking.validator.UniqueNameValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -12,10 +12,10 @@ import java.lang.annotation.Target;
 
 @Constraint(validatedBy = UniqueNameValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 public @interface UniqueName {
 
-    // MAYBE, JUST MAYBE : THERE SOMETHING TO ADD THERE
+    Class<? extends EntityNameRepository<?>> repositoryClass();
 
     String message() default "This name already exists !";
 

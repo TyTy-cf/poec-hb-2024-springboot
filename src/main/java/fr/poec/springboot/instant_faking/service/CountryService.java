@@ -51,9 +51,9 @@ public class CountryService implements DAOServiceInterface<Country> {
         country.setId(id);
         country.setName(countryDTO.getName());
         country.setNationality(countryDTO.getNationality());
-        country.setCode(countryDTO.getCode());
+        country.setCode(countryDTO.getCode().toLowerCase());
         country.setSlug(slugger.slugify(countryDTO.getNationality()));
-        country.setUrlFlag("https://flagcdn.com/32x24/"+countryDTO.getCode()+".png");
+        country.setUrlFlag("https://flagcdn.com/32x24/"+countryDTO.getCode().toLowerCase()+".png");
         return countryRepository.saveAndFlush(country);
     }
 }

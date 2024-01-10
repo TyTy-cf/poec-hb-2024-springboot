@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface GameRepository extends JpaRepository<Game, Long> {
+public interface GameRepository
+            extends JpaRepository<Game, Long>,
+                    EntityNameRepository<Game> {
 
     // SELECT * FROM game WHERE price BETWEEN min AND max
     List<Game> findAllByPriceBetween(double min, double max);

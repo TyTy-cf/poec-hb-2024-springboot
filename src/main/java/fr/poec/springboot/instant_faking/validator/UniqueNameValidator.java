@@ -1,24 +1,34 @@
 package fr.poec.springboot.instant_faking.validator;
 
-import fr.poec.springboot.instant_faking.repository.CountryRepository;
+import fr.poec.springboot.instant_faking.repository.EntityNameRepository;
 import fr.poec.springboot.instant_faking.validator.annotation.UniqueName;
+import jakarta.persistence.EntityManager;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
-@AllArgsConstructor
 public class UniqueNameValidator implements ConstraintValidator<UniqueName, String> {
 
-    private CountryRepository countryRepository;
+    private Class<? extends EntityNameRepository<?>> repositoryClass;
+
+    private final EntityManager em;
+
+    @Autowired
+    UniqueNameValidator(EntityManager em) {
+        this.em = em;
+    }
 
     @Override
     public void initialize(UniqueName constraintAnnotation) {
-        // Must get something from the annotation...
+        repositoryClass = constraintAnnotation.repositoryClass();
     }
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return countryRepository.findByNameOrCodeOrSlugOrNationality(s, s, s, s).isEmpty();
+        JpaRepositoryFactory factory = new JpaRepositoryFactory(em);
+        EntityNameRepository<?> repository = factory.getRepository(repositoryClass);
+        return repository.findByName(s).isEmpty();
     }
 
 }
