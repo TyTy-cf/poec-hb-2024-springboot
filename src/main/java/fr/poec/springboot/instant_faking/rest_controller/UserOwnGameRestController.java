@@ -1,4 +1,4 @@
-package fr.poec.springboot.instant_faking.controller;
+package fr.poec.springboot.instant_faking.rest_controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -4,7 +4,6 @@ import fr.poec.springboot.instant_faking.DTO.CountryDTO;
 import fr.poec.springboot.instant_faking.entity.Country;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.CountryRepository;
-import fr.poec.springboot.instant_faking.utils.Slugger;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,6 @@ import java.util.Optional;
 public class CountryService implements DAOServiceInterface<Country> {
 
     private CountryRepository countryRepository;
-
-    private Slugger slugger;
 
     public List<Country> findAll() {
         return countryRepository.findAll();

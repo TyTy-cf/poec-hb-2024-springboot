@@ -4,7 +4,6 @@ import fr.poec.springboot.instant_faking.DTO.PublisherDTO;
 import fr.poec.springboot.instant_faking.entity.Publisher;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.PublisherRepository;
-import fr.poec.springboot.instant_faking.utils.Slugger;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,6 @@ public class PublisherService {
     private PublisherRepository publisherRepository;
 
     private CountryService countryService;
-
-    private Slugger slugger;
 
     public List<Publisher> findAll() {
         return publisherRepository.findAll();

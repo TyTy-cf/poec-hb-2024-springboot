@@ -1,4 +1,4 @@
-package fr.poec.springboot.instant_faking.controller;
+package fr.poec.springboot.instant_faking.rest_controller;
 
 
 import fr.poec.springboot.instant_faking.DTO.CountryDTO;

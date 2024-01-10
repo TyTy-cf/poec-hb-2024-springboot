@@ -1,4 +1,4 @@
-package fr.poec.springboot.instant_faking.controller;
+package fr.poec.springboot.instant_faking.rest_controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import fr.poec.springboot.instant_faking.entity.Review;

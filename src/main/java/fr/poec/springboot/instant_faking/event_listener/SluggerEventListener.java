@@ -1,6 +1,5 @@
 package fr.poec.springboot.instant_faking.event_listener;
 
-import fr.poec.springboot.instant_faking.entity.Country;
 import fr.poec.springboot.instant_faking.entity.interfaces.SluggerInterface;
 import fr.poec.springboot.instant_faking.utils.Slugger;
 import lombok.AllArgsConstructor;
