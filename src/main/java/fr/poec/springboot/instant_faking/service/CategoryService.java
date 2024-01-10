@@ -2,7 +2,6 @@ package fr.poec.springboot.instant_faking.service;
 
 import fr.poec.springboot.instant_faking.DTO.CategoryDTO;
 import fr.poec.springboot.instant_faking.entity.Category;
-import fr.poec.springboot.instant_faking.entity.Country;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
@@ -20,6 +19,15 @@ public class CategoryService implements DAOServiceInterface<Category> {
     @Override
     public List<Category> findAll() {
         return categoryRepository.findAll();
+    }
+
+    @Override
+    public Category getObjectById(Long id) {
+        Optional<Category> optionalCategory = categoryRepository.findById(id);
+        if (optionalCategory.isEmpty()) {
+            throw new NotFoundInstantFakingException("Category", "id", id);
+        }
+        return optionalCategory.get();
     }
 
     public Optional<Category> findByField(String field) {

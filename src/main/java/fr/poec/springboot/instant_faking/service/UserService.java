@@ -2,7 +2,6 @@ package fr.poec.springboot.instant_faking.service;
 
 import fr.poec.springboot.instant_faking.DTO.UserPostDTO;
 import fr.poec.springboot.instant_faking.DTO.UserPutDTO;
-import fr.poec.springboot.instant_faking.entity.Country;
 import fr.poec.springboot.instant_faking.entity.User;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.UserRepository;
@@ -29,6 +28,14 @@ public class UserService implements DAOServiceInterface<User> {
         return userRepository.findById(id);
     }
 
+    public User getObjectById(Long id) {
+        Optional<User> optionalUser = findById(id);
+        if (optionalUser.isEmpty()) {
+            throw new NotFoundInstantFakingException("User", "id", id);
+        }
+        return optionalUser.get();
+    }
+
     public User create(UserPostDTO userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
@@ -51,7 +58,7 @@ public class UserService implements DAOServiceInterface<User> {
         user.setNickname(userPutDTO.getNickname());
         // On s'assure avant que le countryId n'est pas null
         if (userPutDTO.getCountryId() != null) {
-            user.setCountry(countryService.getCountryById(userPutDTO.getCountryId()));
+            user.setCountry(countryService.getObjectById(userPutDTO.getCountryId()));
         }
 
         // Pas besoin de save dans le cas d'un objet modifié

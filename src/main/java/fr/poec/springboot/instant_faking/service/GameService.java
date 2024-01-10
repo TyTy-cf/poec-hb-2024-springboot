@@ -1,6 +1,7 @@
 package fr.poec.springboot.instant_faking.service;
 
 import fr.poec.springboot.instant_faking.entity.Game;
+import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.GameRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,13 @@ public class GameService {
 
     public List<Game> findByCategory(String slug) {
         return gameRepository.findAllByCategoriesSlugOrderByPublishedAtDesc(slug);
+    }
+
+    public Game getObjectById(Long id) {
+        Optional<Game> optionalGame = gameRepository.findById(id);
+        if (optionalGame.isEmpty()) {
+            throw new NotFoundInstantFakingException("Game", "id", id);
+        }
+        return optionalGame.get();
     }
 }

@@ -1,7 +1,6 @@
 package fr.poec.springboot.instant_faking.service;
 
 import fr.poec.springboot.instant_faking.DTO.PlatformDTO;
-import fr.poec.springboot.instant_faking.entity.Country;
 import fr.poec.springboot.instant_faking.entity.Platform;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.PlatformRepository;
@@ -20,6 +19,15 @@ public class PlatformService implements DAOServiceInterface<Platform> {
     @Override
     public List<Platform> findAll() {
         return platformRepository.findAll();
+    }
+
+    @Override
+    public Platform getObjectById(Long id) {
+        Optional<Platform> optionalPlatform = platformRepository.findById(id);
+        if (optionalPlatform.isEmpty()) {
+            throw new NotFoundInstantFakingException("Platform", "id", id);
+        }
+        return optionalPlatform.get();
     }
 
     public Platform persist(PlatformDTO platformDTO, Long id) {

@@ -42,7 +42,7 @@ public class PublisherService {
         p.setName(publisherDTO.getName());
         p.setCreatedAt(publisherDTO.getCreatedAt());
         p.setWebsite(publisherDTO.getWebsite());
-        p.setCountry(countryService.getCountryById(publisherDTO.getCountryId()));
+        p.setCountry(countryService.getObjectById(publisherDTO.getCountryId()));
 
         // Si id = null, le save fera un insert, sinon un update
         return publisherRepository.saveAndFlush(p);

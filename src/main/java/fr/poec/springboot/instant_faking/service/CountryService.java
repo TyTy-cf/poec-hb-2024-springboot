@@ -20,6 +20,15 @@ public class CountryService implements DAOServiceInterface<Country> {
         return countryRepository.findAll();
     }
 
+    @Override
+    public Country getObjectById(Long id) {
+        Optional<Country> optionalCountry = findByField(id.toString());
+        if (optionalCountry.isEmpty()) {
+            throw new NotFoundInstantFakingException("Country", "id", id);
+        }
+        return optionalCountry.get();
+    }
+
     public Optional<Country> findByField(String field) {
         try {
             Long id = Long.parseLong(field);
@@ -27,14 +36,6 @@ public class CountryService implements DAOServiceInterface<Country> {
         } catch (NumberFormatException e) {
             return countryRepository.findByNameOrCodeOrSlugOrNationality(field, field, field, field);
         }
-    }
-
-    public Country getCountryById(Long id) {
-        Optional<Country> optionalCountry = findByField(id.toString());
-        if (optionalCountry.isEmpty()) { // on traite l'optional du Country
-            throw new NotFoundInstantFakingException("Country", "id", id);
-        }
-        return optionalCountry.get();
     }
 
     public Country persist(CountryDTO countryDTO, Long id) {

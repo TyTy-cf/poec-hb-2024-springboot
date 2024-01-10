@@ -31,10 +31,10 @@ public class Review {
     private Date createdAt;
 
     @JsonView(JsonViews.ReviewShowView.class)
-    private int downVote;
+    private int downVote = 0;
 
     @JsonView(JsonViews.ReviewShowView.class)
-    private int upVote;
+    private int upVote = 0;
 
     @JsonView(JsonViews.ReviewShowView.class)
     private double rating;

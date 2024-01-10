@@ -6,4 +6,6 @@ public interface DAOServiceInterface<T> {
 
     List<T> findAll();
 
+    T getObjectById(Long id);
+
 }
