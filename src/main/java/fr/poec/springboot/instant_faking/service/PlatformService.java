@@ -5,6 +5,8 @@ import fr.poec.springboot.instant_faking.entity.Platform;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.PlatformRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +21,10 @@ public class PlatformService implements DAOServiceInterface<Platform> {
     @Override
     public List<Platform> findAll() {
         return platformRepository.findAll();
+    }
+
+    public Page<Platform> findAll(Pageable pageable) {
+        return platformRepository.findAll(pageable);
     }
 
     @Override
@@ -50,5 +56,12 @@ public class PlatformService implements DAOServiceInterface<Platform> {
         } catch (NumberFormatException e) {
             return platformRepository.findByName(field);
         }
+    }
+
+    public PlatformDTO getDTOById(Long id) {
+        Platform platform = getObjectById(id);
+        PlatformDTO dto = new PlatformDTO();
+        dto.setName(platform.getName());
+        return dto;
     }
 }

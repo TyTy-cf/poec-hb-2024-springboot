@@ -5,11 +5,11 @@
     <head>
         <title>Instant-Faking</title>
         <link href="<c:url value="../../css/bootstrap/bootstrap.min.css" />" rel="stylesheet">
+        <link href="<c:url value="../../css/main.css" />" rel="stylesheet">
     </head>
     <body>
         <div class="container">
-            Coucou on est sur la home !
-            <h1>Les dernières sorties</h1>
+            <h2>Les dernières sorties</h2>
             <ul>
                 <c:forEach items="${gamesReleased}" var="game">
                     <li>${game.name} - ${game.price}€</li>
