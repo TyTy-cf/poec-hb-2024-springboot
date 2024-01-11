@@ -1,20 +1,16 @@
 package fr.poec.springboot.instant_faking.controller;
 
 import fr.poec.springboot.instant_faking.DTO.PlatformDTO;
-import fr.poec.springboot.instant_faking.entity.Platform;
 import fr.poec.springboot.instant_faking.service.PlatformService;
 import fr.poec.springboot.instant_faking.validator.group.ValidationGroup;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 @AllArgsConstructor

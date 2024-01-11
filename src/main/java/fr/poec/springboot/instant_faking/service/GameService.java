@@ -20,8 +20,12 @@ public class GameService {
         return gameRepository.findAll();
     }
 
-    public Optional<Game> findBySlug(String slug) {
-        return gameRepository.findBySlug(slug);
+    public Game findBySlug(String slug) {
+        Optional<Game> optionalGame = gameRepository.findBySlug(slug);
+        if (optionalGame.isEmpty()) {
+            throw new NotFoundInstantFakingException("Game", "slug", slug);
+        }
+        return optionalGame.get();
     }
 
     public List<Game> findTop9ByOrderByPublishedAtDesc() {

@@ -34,7 +34,7 @@ public class GameRestController {
 
     @GetMapping("/{slug}")
     @JsonView(JsonViews.GameShowView.class)
-    public Optional<Game> show(@PathVariable String slug) {
+    public Game show(@PathVariable String slug) {
         return gameService.findBySlug(slug);
     }
 
