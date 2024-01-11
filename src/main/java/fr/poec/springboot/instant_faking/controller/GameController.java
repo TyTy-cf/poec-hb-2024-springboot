@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/game")
+@RequestMapping(value = "/game", name = "app_game")
 @AllArgsConstructor
 public class GameController {
 
     private final GameService gameService;
 
-    @GetMapping("/{slug}")
+    @GetMapping(value = "/{slug}", name = "_show")
     public ModelAndView show(ModelAndView mav, @PathVariable String slug) {
         Game game = gameService.findBySlug(slug);
         // Initialisation du ReviewDTO
