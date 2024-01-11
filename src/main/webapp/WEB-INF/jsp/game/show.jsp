@@ -12,6 +12,10 @@
         <div class="container">
             <h1>${game.name}</h1>
 
+            <h2>Description</h2>
+
+            <c:out value="${game.description}" escapeXml="false"/>
+
         </div>
     </body>
 </html>
