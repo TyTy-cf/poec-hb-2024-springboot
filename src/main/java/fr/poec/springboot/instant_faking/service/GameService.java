@@ -4,6 +4,7 @@ import fr.poec.springboot.instant_faking.entity.Game;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.GameRepository;
 import lombok.AllArgsConstructor;
+import org.hibernate.query.spi.Limit;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,10 @@ public class GameService {
 
     public Optional<Game> findBySlug(String slug) {
         return gameRepository.findBySlug(slug);
+    }
+
+    public List<Game> findTop9ByOrderByPublishedAtDesc() {
+        return gameRepository.findTop9ByOrderByPublishedAtDesc();
     }
 
     public List<Game> findByCategory(String slug) {

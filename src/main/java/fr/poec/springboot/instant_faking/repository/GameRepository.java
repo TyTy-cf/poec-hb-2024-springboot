@@ -3,7 +3,9 @@ package fr.poec.springboot.instant_faking.repository;
 import fr.poec.springboot.instant_faking.entity.Category;
 import fr.poec.springboot.instant_faking.entity.Game;
 import fr.poec.springboot.instant_faking.entity.Publisher;
+import org.hibernate.query.spi.Limit;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +18,8 @@ public interface GameRepository
 
     // SELECT * FROM game WHERE price BETWEEN min AND max
     List<Game> findAllByPriceBetween(double min, double max);
+
+    List<Game> findTop9ByOrderByPublishedAtDesc();
 
     // SELECT * FROM game WHERE name LIKE "%{name}%"
     List<Game> findAllByNameIsContainingIgnoreCase(String name);
