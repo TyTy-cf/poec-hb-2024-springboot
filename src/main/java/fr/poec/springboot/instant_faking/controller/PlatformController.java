@@ -14,19 +14,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping(path = "/platform")
+@RequestMapping(path = "/platform", name = "AppPlatform")
 public class PlatformController {
 
     private final PlatformService platformService;
 
-    @GetMapping(path = "")
+    @GetMapping(path = "", name = "index")
     public ModelAndView index(ModelAndView mav) {
         mav.setViewName("platform/index");
         mav.addObject("platforms", platformService.findAll(PageRequest.of(0, 5)));
         return mav;
     }
 
-    @GetMapping(path = "/new")
+    @GetMapping(path = "/new", name = "new")
     public ModelAndView create(
             ModelAndView mav,
             HttpServletRequest httpServletRequest
@@ -39,11 +39,11 @@ public class PlatformController {
         );
     }
 
-    @GetMapping(path = "/edit/{id}")
+    @GetMapping(path = "/edit/{id}", name = "edit")
     public ModelAndView edit(
+            @PathVariable Long id,
             ModelAndView mav,
-            HttpServletRequest httpServletRequest,
-            @PathVariable Long id
+            HttpServletRequest httpServletRequest
     ) {
         return getFormByDTO(
                 mav,
@@ -53,7 +53,7 @@ public class PlatformController {
         );
     }
 
-    @PostMapping(path = "/new")
+    @PostMapping(path = "/new", name = "newHandler")
     public ModelAndView formHandler(
         @Validated(ValidationGroup.OnPostItem.class) @ModelAttribute("platform") PlatformDTO platformDTO,
         BindingResult result,
@@ -62,7 +62,7 @@ public class PlatformController {
         return formHandle(result, mav, platformDTO, null);
     }
 
-    @PostMapping(path = "/edit/{id}")
+    @PostMapping(path = "/edit/{id}", name = "editHandler")
     public ModelAndView formHandler(
         @Validated(ValidationGroup.OnPostItem.class) @ModelAttribute("platform") PlatformDTO platformDTO,
         BindingResult result,

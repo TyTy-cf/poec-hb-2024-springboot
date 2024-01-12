@@ -5,7 +5,7 @@
 
 <div class="container">
     <h1>Available platforms</h1>
-    <a class="btn btn-link" href="/platform/new">
+    <a class="btn btn-link" href="${s:mvcUrl('AppPlatform#new').build()}">
         New
     </a>
     <table class="table table-hover table-striped">
@@ -22,7 +22,7 @@
                         ${platform.name}
                     </td>
                     <td>
-                        <a class="btn-link" href="/platform/edit/${platform.id}">
+                        <a class="btn-link" href="${s:mvcUrl('AppPlatform#edit').arg(0, platform.id).build()}">
                             Edit
                         </a>
                     </td>
