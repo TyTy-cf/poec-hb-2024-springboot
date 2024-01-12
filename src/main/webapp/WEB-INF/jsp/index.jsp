@@ -5,7 +5,7 @@
 <div class="container">
     <h1>Instant-Faking</h1>
 
-    <h2 class="my-5">Les derni&egrave;res sorties</h2>
+    <h2 class="my-5">Les dernières sorties</h2>
     <div class="row">
         <c:forEach items="${gamesReleased}" var="game">
             <a class="col-4 mt-2 main-game-card" href="${s:mvcUrl('AppGame#show').arg(0, game.slug).build()}">

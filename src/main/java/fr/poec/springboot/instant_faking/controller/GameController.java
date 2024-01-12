@@ -29,4 +29,11 @@ public class GameController {
         return mav;
     }
 
+    @GetMapping(path = "/search/{searched}", name = "search")
+    public ModelAndView search(@PathVariable String searched, ModelAndView mav) {
+        mav.setViewName("index");
+        mav.addObject("gamesReleased", gameService.findAllBySearchedValue(searched));
+        return mav;
+    }
+
 }

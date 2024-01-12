@@ -43,4 +43,8 @@ public class GameService {
         }
         return optionalGame.get();
     }
+
+    public List<Game> findAllBySearchedValue(String search) {
+        return gameRepository.findAllByNameIsContainingIgnoreCaseOrCategoriesNameIsContainingIgnoreCaseOrPlatformsNameIsContainingIgnoreCaseOrCountriesNameIsContainingIgnoreCaseOrderByPriceDesc(search, search, search, search);
+    }
 }
