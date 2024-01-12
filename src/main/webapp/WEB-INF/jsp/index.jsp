@@ -1,4 +1,6 @@
-<%@ include file="base.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="tag.jsp" %>
+<jsp:include flush="true" page="base.jsp"/>
 
 <div class="container">
     <h1>Instant-Faking</h1>
