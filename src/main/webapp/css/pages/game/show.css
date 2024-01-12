@@ -9,3 +9,7 @@
     object-fit: cover;
     border-radius: 0.5em;
 }
+
+.description ul {
+    list-style: none;
+}

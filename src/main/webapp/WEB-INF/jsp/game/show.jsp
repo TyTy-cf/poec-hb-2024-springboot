@@ -35,7 +35,7 @@
 
     <h2 class="my-5">Description</h2>
 
-    <div class="text-center">
+    <div class="text-center description">
         <c:out value="${game.description}" escapeXml="false"/>
     </div>
 
