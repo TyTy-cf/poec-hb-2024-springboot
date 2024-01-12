@@ -14,22 +14,33 @@
             <h1>${game.name}</h1>
             <div class="d-flex">
                 <c:forEach items="${game.countries}" var="country">
-                    <img class="me-1"
-                         src="${country.urlFlag}"
-                         alt="${country.name}"
-                         title="${country.nationality}"
-                    >
+                    <a class="link-if" href="${s:mvcUrl('AppGame#search').arg(0, country.name.toLowerCase()).build()}">
+                        <img class="me-1"
+                             src="${country.urlFlag}"
+                             alt="${country.name}"
+                             title="${country.nationality}"
+                        >
+                    </a>
                 </c:forEach>
             </div>
+            <p class="m-0 mt-1">Genres :
+                <c:forEach items="${game.categories}" var="category">
+                    <a class="link-if" href="${s:mvcUrl('AppGame#search').arg(0, category.slug).build()}">${category.name}</a>
+                </c:forEach>
+            </p>
             <c:if test="${game.platforms.size() > 0}">
                 <p class="m-0">Disponible sur :</p>
                 <ul class="list-unstyled">
                     <c:forEach items="${game.platforms}" var="platform">
-                        <li>${platform.name}</li>
+                        <li>
+                            <a class="link-if" href="${s:mvcUrl('AppGame#search').arg(0, platform.slug).build()}">
+                                ${platform.name}
+                            </a>
+                        </li>
                     </c:forEach>
                 </ul>
             </c:if>
-            <p>${game.price}€</p>
+            <p class="fs-2">${game.price}€</p>
         </div>
     </div>
 
@@ -39,18 +50,27 @@
         <c:out value="${game.description}" escapeXml="false"/>
     </div>
 
-    <c:if test="${game.reviews.size() > 0}">
-        <h2 class="my-5">Commentaires</h2>
-        <div class="row">
-            <c:forEach items="${game.reviews.subList(0, 12)}" var="review">
-                <div class="col-3">
-                    <div>${review.rating}/5</div>
+    <h2 class="my-3">Commentaires</h2>
+        <c:if test="${game.reviews.size() > 0}">
+            <div class="row">
+                <c:forEach items="${game.reviews.subList(0, 12)}" var="review">
+                    <div class="col-3">
+                        <div>${review.rating}/5</div>
+                    </div>
+                </c:forEach>
+            </div>
+        </c:if>
+        <f:form modelAttribute="reviewDto" method="post" action="????" cssClass="p-5">
+            <div class="mb-3 row">
+                <f:label path="title" class="col-sm-2 col-form-label">Title</f:label>
+                <div class="col-sm-10">
+                    <f:input type="text" cssClass="form-control" path="title"/>
+                    <f:errors path="title" cssClass="invalid-feedback"/>
                 </div>
-            </c:forEach>
-        </div>
-    </c:if>
-
-<%--    TODO : form commentaire ?--%>
+            </div>
+            <f:button class="btn btn-secondary" type="reset">Reset</f:button>
+            <f:button class="btn btn-primary">Submit</f:button>
+        </f:form>
 
 </div>
 

@@ -26,6 +26,7 @@ public class GameController {
         dto.setUserId(1L);
         mav.setViewName("game/show");
         mav.addObject("game", game);
+        mav.addObject("reviewDto", dto);
         return mav;
     }
 

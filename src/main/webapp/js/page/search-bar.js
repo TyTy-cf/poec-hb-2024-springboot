@@ -3,13 +3,22 @@ function initSearchBar() {
     const searchBar = document.querySelector("input[data-search-bar-games]");
     if (searchBar) {
         const submit = searchBar.nextElementSibling;
+        searchBar.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                launchSearch(searchBar.value);
+            }
+        });
         if (submit) {
             submit.addEventListener('click', () => {
-                if (searchBar.value.trim()) {
-                    location.href = "/game/search/" + searchBar.value;
-                }
+                launchSearch(searchBar.value);
             });
         }
+    }
+}
+
+function launchSearch(value) {
+    if (value.trim()) {
+        location.href = "/game/search/" + value;
     }
 }
 
