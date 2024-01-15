@@ -47,7 +47,11 @@ public class JsonViews {
             UserMinimalView,
             CountryDetailView {}
 
-    public interface ReviewShowView extends GameListView, UserListView {}
+    public interface ReviewShowView extends
+            GameReviewShowView,
+            UserListView {}
+
+    public interface GameReviewShowView {}
 
     public interface ReviewListView extends
             GameListView,

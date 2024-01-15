@@ -53,6 +53,7 @@
     <h2 class="my-3">Commentaires</h2>
         <c:if test="${game.reviews.size() > 0}">
             <div class="row">
+                <c:set value="12" scope="request" var="max"/>
                 <c:if test="${game.reviews.size() <= 12}">
                     <c:set value="${game.reviews.size()}" scope="request" var="max"/>
                 </c:if>
