@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping(path = "/platform", name = "AppPlatform")
+@RequestMapping(path = "/admin/platform", name = "AppPlatform")
 public class PlatformController {
 
     private final PlatformService platformService;

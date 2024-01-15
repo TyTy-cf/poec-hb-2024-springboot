@@ -17,9 +17,8 @@ public class UserPostDTO {
 
     @Email(message = "Please, give a valid email")
     @NotBlank(message = "Please, give an email")
-    // On peut réécrire les valeurs des champs de l'annotation
     @UniqueEmail(example = "TOTO, MAIS DU DTO")
-    private String email;
+    private String username;
 
     @NotBlank(message = "Please, give a proper name")
     @Size(message = "The account name must have at least 5 characters", min = 5)
