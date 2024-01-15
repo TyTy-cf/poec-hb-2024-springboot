@@ -13,3 +13,7 @@
 .description ul {
     list-style: none;
 }
+
+.review-content {
+    height: 120px;
+}
