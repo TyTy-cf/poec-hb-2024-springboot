@@ -6,18 +6,29 @@ import fr.poec.springboot.instant_faking.entity.User;
 import fr.poec.springboot.instant_faking.exception.NotFoundInstantFakingException;
 import fr.poec.springboot.instant_faking.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService implements DAOServiceInterface<User> {
+public class UserService implements DAOServiceInterface<User>,
+                                    UserDetailsService {
 
     private UserRepository userRepository;
 
     private CountryService countryService;
+
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public List<User> findAll() {
@@ -40,7 +51,7 @@ public class UserService implements DAOServiceInterface<User> {
         User user = new User();
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail().toLowerCase());
-        user.setPassword(userDTO.getPassword());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
         return userRepository.saveAndFlush(user);
     }
@@ -52,7 +63,7 @@ public class UserService implements DAOServiceInterface<User> {
         }
         User user = optionalUser.get();
         if (!userPutDTO.getPassword().isEmpty()) {
-            user.setPassword(userPutDTO.getPassword());
+            user.setPassword(passwordEncoder.encode(userPutDTO.getPassword()));
         }
         user.setProfileImage(userPutDTO.getProfileImage());
         user.setNickname(userPutDTO.getNickname());
@@ -66,4 +77,30 @@ public class UserService implements DAOServiceInterface<User> {
         userRepository.flush();
         return user;
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> optionalUser = userRepository.findByEmail(username);
+        optionalUser.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        User user = optionalUser.get();
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                userGrantedAuthority(user.getRoles())
+        );
+    }
+
+    private List<GrantedAuthority> userGrantedAuthority(String role) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        List<String> roles = Collections.singletonList(role);
+        roles.forEach(r -> {
+            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+            if (r.contains("ADMIN")) {
+                authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            }
+        });
+        return authorities;
+    }
+
 }
