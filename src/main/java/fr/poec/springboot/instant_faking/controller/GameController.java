@@ -2,13 +2,17 @@ package fr.poec.springboot.instant_faking.controller;
 
 import fr.poec.springboot.instant_faking.DTO.ReviewDTO;
 import fr.poec.springboot.instant_faking.entity.Game;
+import fr.poec.springboot.instant_faking.entity.User;
 import fr.poec.springboot.instant_faking.service.GameService;
+import fr.poec.springboot.instant_faking.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping(path = "/game", name = "AppGame")
@@ -17,16 +21,25 @@ public class GameController {
 
     private final GameService gameService;
 
+    private final UserService userService;
+
     @GetMapping(path = "/{slug}", name = "show")
-    public ModelAndView show(@PathVariable String slug, ModelAndView mav) {
+    public ModelAndView show(
+            @PathVariable String slug,
+            ModelAndView mav,
+            Principal principal
+    ) {
         Game game = gameService.findBySlug(slug);
-        // Initialisation du ReviewDTO
-        ReviewDTO dto = new ReviewDTO();
-        dto.setGameId(game.getId());
-        dto.setUserId(1L);
+
+        if (principal != null) {
+            User user = userService.findByEmail(principal.getName());
+            ReviewDTO dto = new ReviewDTO();
+            dto.setGameId(game.getId());
+            dto.setUserId(user.getId());
+            mav.addObject("reviewDto", dto);
+        }
         mav.setViewName("game/show");
         mav.addObject("game", game);
-        mav.addObject("reviewDto", dto);
         return mav;
     }
 

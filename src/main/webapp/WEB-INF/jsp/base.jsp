@@ -65,7 +65,7 @@
                             Bienvenue<span class="ms-2 logged-user"><security:authentication property="name"/></span>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <form method="POST" action="${contextPath}/logout" class="form-signout" autocomplete="off">
+                            <form method="POST" action="${contextPath}/logout" autocomplete="off">
                                 <button type="submit" tabindex="3" class="btn btn-link">Logout</button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>

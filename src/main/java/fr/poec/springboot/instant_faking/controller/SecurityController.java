@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -35,10 +34,10 @@ public class SecurityController {
         return mav;
     }
 
-    @RequestMapping(value = "/login")
+    @GetMapping(value = "/login")
     public ModelAndView login(ModelAndView mav, String error) {
         if (error != null) {
-            mav.addObject("error", "Your username and password is invalid.");
+            mav.addObject("error", "Your username or password is invalid.");
         }
         mav.setViewName("security/login");
         return mav;
