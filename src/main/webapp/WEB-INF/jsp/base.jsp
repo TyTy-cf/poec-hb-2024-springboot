@@ -19,7 +19,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="row w-100">
                 <div class="col-2">
-                    <a class="navbar-brand ms-3" href="${s:mvcUrl('AppHome#index').build()}">
+                    <a class="navbar-brand ms-3" href="/">
                         <i class="fa-brands fa-steam fa-2x"></i>
                     </a>
                 </div>
@@ -29,7 +29,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link" href="${s:mvcUrl('AppPlatform#index').build()}">Platform</a>
+                            <a class="nav-link" href="/platform">Platform</a>
                         </div>
                     </div>
                 </div>
