@@ -50,6 +50,9 @@
                     </div>
                 </div>
                 <div class="col-4">
+                    <a class="nav-link" href="${s:mvcUrl('AppRegister#register').build()}">
+                        Créer son compte
+                    </a>
                 </div>
             </div>
         </nav>
