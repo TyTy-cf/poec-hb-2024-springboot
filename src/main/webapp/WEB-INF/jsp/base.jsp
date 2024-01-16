@@ -30,7 +30,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <security:authorize access="hasRole('ROLE_ADMIN')">
-                                <a class="nav-link" href="${contextPath}">Platform</a>
+                                <a class="nav-link" href="${UrlRoute.URL_ADMIN_PLATFORM}">Platform</a>
                             </security:authorize>
                         </div>
                     </div>
@@ -54,10 +54,10 @@
                 <div class="col-4">
                     <security:authorize access="!isAuthenticated()">
                         <div class="d-flex justify-content-end">
-                            <a class="nav-link" href="${contextPath}/register">Register</a>
+                            <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Register</a>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a class="nav-link" href="${contextPath}/login">Login</a>
+                            <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Login</a>
                         </div>
                     </security:authorize>
                     <security:authorize access="isAuthenticated()">
@@ -68,7 +68,7 @@
                             </span>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <form method="POST" action="${contextPath}/logout" autocomplete="off">
+                            <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
                                 <button type="submit" tabindex="3" class="btn btn-link">Logout</button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
