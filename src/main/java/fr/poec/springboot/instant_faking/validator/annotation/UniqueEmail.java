@@ -14,8 +14,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface UniqueEmail {
 
-    String example() default "TOTO"; // Champ complémentaire de la validation
-
     String message() default "This email already exists !";
 
     Class<?>[] groups() default {};

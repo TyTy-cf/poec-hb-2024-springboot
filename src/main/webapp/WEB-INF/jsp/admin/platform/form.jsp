@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="../tag.jsp" %>
+<%@ include file="../../tag.jsp" %>
 <c:set var="title" scope="request" value="Form platform"/>
-<jsp:include flush="true" page="../base.jsp"/>
+<jsp:include flush="true" page="../../base.jsp"/>
 
 <div class="container">
 
@@ -24,4 +24,4 @@
     </f:form>
 </div>
 
-<%@ include file="../footer.jsp" %>
+<%@ include file="../../footer.jsp" %>

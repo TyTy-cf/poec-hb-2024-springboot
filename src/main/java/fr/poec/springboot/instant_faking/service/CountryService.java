@@ -20,6 +20,10 @@ public class CountryService implements DAOServiceInterface<Country> {
         return countryRepository.findAll();
     }
 
+    public List<Country> findAllOrderByName() {
+        return countryRepository.findAllByOrderByNameAsc();
+    }
+
     @Override
     public Country getObjectById(Long id) {
         Optional<Country> optionalCountry = findByField(id.toString());

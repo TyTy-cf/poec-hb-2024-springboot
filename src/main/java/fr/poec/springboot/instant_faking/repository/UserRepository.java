@@ -1,6 +1,5 @@
 package fr.poec.springboot.instant_faking.repository;
 
-import fr.poec.springboot.instant_faking.entity.Platform;
 import fr.poec.springboot.instant_faking.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,5 +12,7 @@ public interface UserRepository
                 EntityNameRepository<User> {
 
     Optional<User> findByEmail(String email);
+
+    Optional<User> findByName(String name);
 
 }

@@ -3,6 +3,7 @@ package fr.poec.springboot.instant_faking.controller;
 import fr.poec.springboot.instant_faking.DTO.UserPostDTO;
 import fr.poec.springboot.instant_faking.mapping.UrlRoute;
 import fr.poec.springboot.instant_faking.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,7 +27,7 @@ public class SecurityController {
 
     @PostMapping(UrlRoute.URL_REGISTER)
     public ModelAndView register(
-            @ModelAttribute("userForm") UserPostDTO userForm,
+            @Valid @ModelAttribute("userForm") UserPostDTO userForm,
             BindingResult bindingResult,
             ModelAndView mav
     ) {

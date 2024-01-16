@@ -62,9 +62,10 @@
                     </security:authorize>
                     <security:authorize access="isAuthenticated()">
                         <div class="d-flex justify-content-end">
-                            Bienvenue
                             <span class="ms-2 logged-user">
-                                <security:authentication property="name"/>
+                                <a class="btn-link" href="${UrlRoute.URL_USER}/<security:authentication property="name"/>">
+                                    <security:authentication property="name"/>
+                                </a>
                             </span>
                         </div>
                         <div class="d-flex justify-content-end">

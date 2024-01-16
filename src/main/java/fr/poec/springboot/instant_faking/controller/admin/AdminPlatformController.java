@@ -6,7 +6,6 @@ import fr.poec.springboot.instant_faking.service.PlatformService;
 import fr.poec.springboot.instant_faking.validator.group.ValidationGroup;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.apache.jasper.tagplugins.jstl.core.Url;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,13 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @AllArgsConstructor
 @RequestMapping(name = "AppPlatform")
-public class PlatformController {
+public class AdminPlatformController {
 
     private final PlatformService platformService;
 
     @GetMapping(path = UrlRoute.URL_ADMIN_PLATFORM, name = "index")
     public ModelAndView index(ModelAndView mav) {
-        mav.setViewName("platform/index");
+        mav.setViewName("admin/platform/index");
         mav.addObject("platforms", platformService.findAll(PageRequest.of(0, 5)));
         return mav;
     }
@@ -80,7 +79,7 @@ public class PlatformController {
             String uri,
             boolean isEdit
     ) {
-        mav.setViewName("platform/form");
+        mav.setViewName("admin/platform/form");
         mav.addObject("platform", dto);
         mav.addObject("action", uri);
         mav.addObject("isEdit", isEdit);
@@ -94,7 +93,7 @@ public class PlatformController {
             Long id
     ) {
         if (result.hasErrors()) {
-            mav.setViewName("platform/form");
+            mav.setViewName("admin/platform/form");
             return mav;
         }
         platformService.persist(dto, id);

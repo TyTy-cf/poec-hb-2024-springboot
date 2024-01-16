@@ -1,4 +1,4 @@
-package fr.poec.springboot.instant_faking.controller;
+package fr.poec.springboot.instant_faking.controller.app;
 
 import fr.poec.springboot.instant_faking.DTO.ReviewDTO;
 import fr.poec.springboot.instant_faking.entity.Game;

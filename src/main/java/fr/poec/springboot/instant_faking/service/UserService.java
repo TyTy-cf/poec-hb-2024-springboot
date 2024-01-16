@@ -45,6 +45,12 @@ public class UserService implements DAOServiceInterface<User>,
         return optionalUser.get();
     }
 
+    public User findByName(String name) {
+        Optional<User> optionalUser = userRepository.findByName(name);
+        optionalUser.orElseThrow(() -> new NotFoundInstantFakingException("User", "name", name));
+        return optionalUser.get();
+    }
+
     public User getObjectById(Long id) {
         Optional<User> optionalUser = findById(id);
         optionalUser.orElseThrow(() -> new NotFoundInstantFakingException("User", "id", id));

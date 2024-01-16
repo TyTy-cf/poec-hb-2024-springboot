@@ -17,7 +17,7 @@ public class UserPostDTO {
 
     @Email(message = "Please, give a valid email")
     @NotBlank(message = "Please, give an email")
-    @UniqueEmail(example = "TOTO, MAIS DU DTO")
+    @UniqueEmail
     private String username;
 
     @NotBlank(message = "Please, give a proper name")
