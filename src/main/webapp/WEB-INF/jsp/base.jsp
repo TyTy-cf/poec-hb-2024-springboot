@@ -30,7 +30,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <security:authorize access="hasRole('ROLE_ADMIN')">
-                                <a class="nav-link" href="${contextPath}/admin/platform">Platform</a>
+                                <a class="nav-link" href="${contextPath}">Platform</a>
                             </security:authorize>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 package fr.poec.springboot.instant_faking.controller;
 
 import fr.poec.springboot.instant_faking.DTO.UserPostDTO;
+import fr.poec.springboot.instant_faking.mapping.UrlRoute;
 import fr.poec.springboot.instant_faking.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,14 +17,14 @@ public class SecurityController {
 
     private UserService userService;
 
-    @GetMapping("/register")
+    @GetMapping(UrlRoute.URL_REGISTER)
     public ModelAndView register(ModelAndView mav) {
         mav.setViewName("security/register");
         mav.addObject("userForm", new UserPostDTO());
         return mav;
     }
 
-    @PostMapping("/register")
+    @PostMapping(UrlRoute.URL_REGISTER)
     public ModelAndView register(
             @ModelAttribute("userForm") UserPostDTO userForm,
             BindingResult bindingResult,
@@ -34,11 +35,11 @@ public class SecurityController {
             return mav;
         }
         userService.create(userForm);
-        mav.setViewName("redirect:/login");
+        mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
         return mav;
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = UrlRoute.URL_LOGIN)
     public ModelAndView login(ModelAndView mav, String error) {
         if (error != null) {
             mav.addObject("error", "Your username or password is invalid.");

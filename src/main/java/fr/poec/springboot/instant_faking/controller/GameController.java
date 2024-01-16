@@ -3,6 +3,7 @@ package fr.poec.springboot.instant_faking.controller;
 import fr.poec.springboot.instant_faking.DTO.ReviewDTO;
 import fr.poec.springboot.instant_faking.entity.Game;
 import fr.poec.springboot.instant_faking.entity.User;
+import fr.poec.springboot.instant_faking.mapping.UrlRoute;
 import fr.poec.springboot.instant_faking.service.GameService;
 import fr.poec.springboot.instant_faking.service.UserService;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 
 @Controller
-@RequestMapping(path = "/game", name = "AppGame")
+@RequestMapping(name = "AppGame")
 @AllArgsConstructor
 public class GameController {
 
@@ -23,7 +24,7 @@ public class GameController {
 
     private final UserService userService;
 
-    @GetMapping(path = "/{slug}", name = "show")
+    @GetMapping(path = UrlRoute.URL_GAME + "/{slug}", name = "show")
     public ModelAndView show(
             @PathVariable String slug,
             ModelAndView mav,
@@ -43,7 +44,7 @@ public class GameController {
         return mav;
     }
 
-    @GetMapping(path = "/search/{searched}", name = "search")
+    @GetMapping(path =  UrlRoute.URL_GAME_SEARCH + "/{searched}", name = "search")
     public ModelAndView search(@PathVariable String searched, ModelAndView mav) {
         mav.setViewName("index");
         mav.addObject("gamesReleased", gameService.findAllBySearchedValue(searched));
