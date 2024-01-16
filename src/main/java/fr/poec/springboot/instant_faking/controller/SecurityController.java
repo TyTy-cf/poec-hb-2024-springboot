@@ -24,7 +24,11 @@ public class SecurityController {
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@ModelAttribute("userForm") UserPostDTO userForm, BindingResult bindingResult, ModelAndView mav) {
+    public ModelAndView register(
+            @ModelAttribute("userForm") UserPostDTO userForm,
+            BindingResult bindingResult,
+            ModelAndView mav
+    ) {
         if (bindingResult.hasErrors()) {
             mav.setViewName("security/register");
             return mav;

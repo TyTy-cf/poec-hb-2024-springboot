@@ -54,7 +54,7 @@
                 <div class="col-4">
                     <security:authorize access="!isAuthenticated()">
                         <div class="d-flex justify-content-end">
-                            <a class="nav-link" href="/register">Register</a>
+                            <a class="nav-link" href="${contextPath}/register">Register</a>
                         </div>
                         <div class="d-flex justify-content-end">
                             <a class="nav-link" href="${contextPath}/login">Login</a>
@@ -62,7 +62,10 @@
                     </security:authorize>
                     <security:authorize access="isAuthenticated()">
                         <div class="d-flex justify-content-end">
-                            Bienvenue<span class="ms-2 logged-user"><security:authentication property="name"/></span>
+                            Bienvenue
+                            <span class="ms-2 logged-user">
+                                <security:authentication property="name"/>
+                            </span>
                         </div>
                         <div class="d-flex justify-content-end">
                             <form method="POST" action="${contextPath}/logout" autocomplete="off">
