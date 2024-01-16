@@ -9,12 +9,13 @@
         <div class="mb-3 row">
             <f:label path="countries" class="col-sm-2 col-form-label">Country</f:label>
             <div class="col-sm-10">
-                <input class="form-control" data-game-select-country-input/>
+                <input class="form-control" data-multiple-select-input="country"/>
                 <f:select path="countries"
                           multiple="multiple"
                           items="${countries}"
-                          cssClass="form-select data-game-select-country"
+                          cssClass="form-select"
                           itemLabel="name"
+                          data-multiple-select="country"
                 >
                 </f:select>
             </div>
