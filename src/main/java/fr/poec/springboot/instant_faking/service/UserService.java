@@ -39,6 +39,10 @@ public class UserService implements DAOServiceInterface<User>,
         return userRepository.findById(id);
     }
 
+    public List<User> findTop5ByOrderByCreatedAtDesc() {
+        return userRepository.findTop5ByOrderByCreatedAtDesc();
+    }
+
     public User findByEmail(String email) {
         Optional<User> optionalUser = userRepository.findByEmail(email);
         optionalUser.orElseThrow(() -> new NotFoundInstantFakingException("User", "email", email));

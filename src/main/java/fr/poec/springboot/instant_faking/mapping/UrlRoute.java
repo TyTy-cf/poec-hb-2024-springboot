@@ -5,10 +5,10 @@ public class UrlRoute {
     public final static String URL_LOGIN = "/login";
     public final static String URL_LOGOUT = "/logout";
     public final static String URL_REGISTER = "/register";
-
     public final static String URL_GAME = "/game";
     public final static String URL_GAME_SEARCH = URL_GAME + "/search";
     public final static String URL_USER = "/user";
+
 
     public final static String URL_ADMIN = "/admin";
     public final static String URL_ADMIN_PLATFORM = URL_ADMIN + "/platform";

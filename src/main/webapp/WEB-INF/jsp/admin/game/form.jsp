@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../../tag.jsp" %>
 <c:set var="title" scope="request" value="Form game"/>
-<jsp:include flush="true" page="../../base.jsp"/>
+<jsp:include flush="true" page="../base_admin.jsp"/>
 
 <div class="container">
     <h1>Create Game</h1>
@@ -25,4 +25,4 @@
     </f:form>
 </div>
 
-<%@ include file="../../footer.jsp" %>
+<%@ include file="../footer_admin.jsp" %>
