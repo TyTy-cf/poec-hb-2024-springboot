@@ -66,7 +66,7 @@
                                 Bienvenue
                                 <a class="logged-user btn-link" href="${UrlRoute.URL_USER}/${userLogged.name}">
                                      ${userLogged.name}
-                                </a>
+                                </a> - ${userLogged.wallet}€
                             </span>
                         </div>
                         <div class="d-flex justify-content-end">

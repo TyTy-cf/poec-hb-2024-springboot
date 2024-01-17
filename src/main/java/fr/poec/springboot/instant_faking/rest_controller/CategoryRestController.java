@@ -6,8 +6,10 @@ import fr.poec.springboot.instant_faking.service.CategoryService;
 import fr.poec.springboot.instant_faking.validator.group.ValidationGroup;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +42,11 @@ public class CategoryRestController {
     @Validated(ValidationGroup.OnPutItem.class)
     public Category persist(@Valid @RequestBody CategoryDTO categoryDTO, @PathVariable Long id) {
         return categoryService.persist(categoryDTO, id);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<String> fileUploading(@RequestParam("file") MultipartFile file) {
+        return ResponseEntity.ok("Successfully uploaded : " + file.getOriginalFilename());
     }
 
 }
