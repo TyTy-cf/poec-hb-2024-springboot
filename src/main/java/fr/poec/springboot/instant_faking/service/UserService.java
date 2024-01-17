@@ -69,10 +69,21 @@ public class UserService implements DAOServiceInterface<User>,
         return userRepository.saveAndFlush(user);
     }
 
+    public User edit(String name, UserPutDTO userPutDTO) {
+        Optional<User> optionalUser = userRepository.findByName(name);
+        optionalUser.orElseThrow(() -> new NotFoundInstantFakingException("User", "name", name));
+        User user = optionalUser.get();
+        return handleEdit(user, userPutDTO);
+    }
+
     public User edit(Long id, UserPutDTO userPutDTO) {
         Optional<User> optionalUser = userRepository.findById(id);
         optionalUser.orElseThrow(() -> new NotFoundInstantFakingException("User", "id", id));
         User user = optionalUser.get();
+        return handleEdit(user, userPutDTO);
+    }
+
+    private User handleEdit(User user, UserPutDTO userPutDTO) {
         if (!userPutDTO.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(userPutDTO.getPassword()));
         }
@@ -108,6 +119,15 @@ public class UserService implements DAOServiceInterface<User>,
             }
         });
         return authorities;
+    }
+
+    public UserPutDTO getUserPutDTOByUser(User user) {
+        UserPutDTO userPutDTO = new UserPutDTO();
+        userPutDTO.setNickname(user.getNickname());
+        if (user.getCountry() != null) {
+            userPutDTO.setCountryId(user.getCountry().getId());
+        }
+        return userPutDTO;
     }
 
 }

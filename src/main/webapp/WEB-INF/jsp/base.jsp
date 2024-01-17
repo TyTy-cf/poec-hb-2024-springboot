@@ -14,6 +14,7 @@
         <link href="${contextPath}/css/main.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
         <script type="text/javascript" src="${contextPath}/js/page/search-bar.js"></script>
+        <script type="text/javascript" src="${contextPath}/js/page/profile.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
